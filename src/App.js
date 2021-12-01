@@ -72,8 +72,8 @@ function App() {
       </Box>
       <Stack>
         <Barchart dataset={data} platforms={platforms} publisher={publisher}></Barchart>
-        <Heatmap dataset={data} platforms={platforms}></Heatmap>
-        <Scatterplot dataset={data} platforms={platforms}></Scatterplot>
+        <Heatmap dataset={data} platforms={platforms}  publisher={publisher}></Heatmap>
+        <Scatterplot dataset={data} platforms={platforms}  publisher={publisher}></Scatterplot>
       </Stack>
     </div>
   );

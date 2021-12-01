@@ -12,7 +12,7 @@ const initChart = (h, w) => {
       .style("border", "1px solid black")
 }
 
-const drawChart =(data, platforms) => {
+const drawChart =(data, platforms, publisher) => {
   const margin = {top: 80, right: 25, bottom: 30, left: 50}
   const width = 900 - margin.left - margin.right 
   const height = 800 - margin.top - margin.bottom
@@ -66,10 +66,23 @@ const svg = d3.select("#my_dataviz")
     .call(d3.axisLeft(y).tickSize(0))
     .select(".domain").remove()
 
+  let myColor = null;
   // Build color scale
-  const myColor = d3.scaleSequential()
-    .interpolator(d3.interpolateInferno)
+  if(publisher === "Nintendo"){
+  myColor = d3.scaleSequential()
+    .interpolator(d3.interpolateReds)
     .domain([1,100])
+  }
+  if(publisher === "Sony"){
+    myColor = d3.scaleSequential()
+      .interpolator(d3.interpolateBlues)
+      .domain([1,100])
+    }
+    if(publisher === "Microsoft"){
+      myColor = d3.scaleSequential()
+        .interpolator(d3.interpolateGreens)
+        .domain([1,100])
+    }
 
   // create a tooltip
   const tooltip = d3.select("#my_dataviz")
@@ -147,7 +160,7 @@ const Heatmap = (props) => {
   var div = d3.select("#my_dataviz");
   div.selectAll("*").remove();
    initChart(460, 400)
-   drawChart(props.dataset, props.platforms)
+   drawChart(props.dataset, props.platforms, props.publisher)
     return(
      <div>
       <div id="my_dataviz"></div>
