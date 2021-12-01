@@ -6,26 +6,51 @@ import React from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem ,Box, FormControl, Select, InputLabel, Stack} from '@mui/material'
+import {MenuItem ,Box, FormControl, Select, InputLabel, Stack} from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
-
+const GameDataGrid = (data) => {
+  console.log(data)
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={data}
+        columns={data.columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        disableSelectionOnClick
+      />
+    </div>
+  );
+}
 
 function App() {
   const [data, setData] = React.useState([]);
+  const [chosen, setChosen] = React.useState(false)
   const [loading, setLoading] = React.useState(true);
   const [publisher, setPublisher] = React.useState("Nintendo")
+  const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
+  const playstation = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
+  const microsoft = ['XB', 'X360', 'XOne']
+  const [platforms, setPlatforms] = React.useState(nintendo)
+
   const handleChange = (data) => {
-    setPublisher(data.target.value)
+    const publisher = data.target.value 
+    setPublisher(publisher)
+    if(publisher === "Nintendo")  setPlatforms(nintendo)
+    if(publisher === "Sony")   setPlatforms(playstation)
+    if(publisher === "Microsoft")     setPlatforms(microsoft)
   }
-  
+
   React.useEffect(() => {
-    csv(dataset).then(d => {
-      setData(d);
+    console.log(dataset)
+    csv(dataset).then(data => {
+      setData(data);
       setLoading(false);
     });
   }, []);
 
-  console.log(data)
   return (
     <div className="App">
     <label>Choose a Publisher:</label>
@@ -36,7 +61,7 @@ function App() {
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         label="Publisher"
-        value="Nintendo"
+        value={publisher}
         onChange={handleChange}
       >
         <MenuItem value="Nintendo">Nintendo</MenuItem>
@@ -45,22 +70,11 @@ function App() {
       </Select>
       </FormControl>
       </Box>
-      <div 
-       style= {{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-      >
-      <Stack
-  direction={{ xs: 'column', sm: 'row' }}
-  spacing={{ xs: 1, sm: 2, md: 4 }}
->
-<Barchart dataset={data} publisher={publisher}></Barchart>
-        <Heatmap dataset={data} publisher={publisher}></Heatmap>
-        <Scatterplot dataset={data} publisher={publisher}></Scatterplot>
-</Stack>
-      </div>
+      <Stack>
+        <Barchart dataset={data} platforms={platforms} publisher={publisher}></Barchart>
+        <Heatmap dataset={data} platforms={platforms}></Heatmap>
+        <Scatterplot dataset={data} platforms={platforms}></Scatterplot>
+      </Stack>
     </div>
   );
 }

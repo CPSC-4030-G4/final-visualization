@@ -12,7 +12,7 @@ const initChart = (h, w) => {
       .style("border", "1px solid black")
 }
 
-const drawChart =(data, publisher) => {
+const drawChart =(data, platforms) => {
   const margin = {top: 80, right: 25, bottom: 30, left: 50}
   const width = 900 - margin.left - margin.right 
   const height = 800 - margin.top - margin.bottom
@@ -26,18 +26,20 @@ const svg = d3.select("#my_dataviz")
   .attr("transform", `translate(${margin.left}, ${margin.top})`)
 
 //Read the data
+  const platformed_data = data.filter((d)=> {
+    return platforms.includes(d['Platform'])
+  })
 
-
-  let genre = Array.from(new Set(data.map(d => d.Genre)))
+  let genre = Array.from(new Set(platformed_data.map(d => d.Genre)))
   console.log(genre)
-  let platform = Array.from(new Set(data.map(d => d.Platform)))
+  let platform = Array.from(new Set(platformed_data.map(d => d.Platform)))
   console.log(platform)
   let sales = {}
-  data.forEach(element => {
+  platformed_data.forEach(element => {
     sales[`${element['Platform']},${element['Genre']}`] = 0 
   })
 
-  data.forEach((d) => {
+  platformed_data.forEach((d) => {
     sales[`${d['Platform']},${d['Genre']}`] += Number(d['Global_Sales'])
   })
   
@@ -106,7 +108,7 @@ const svg = d3.select("#my_dataviz")
 
   // add the squares
   svg.selectAll()
-    .data(data, function(d) {return d.Genre+':'+d.Platform})
+    .data(platformed_data, function(d) {return d.Genre+':'+d.Platform})
     .join("rect")
       .attr("x", function(d) { return x(d.Genre) })
       .attr("y", function(d) { return y(d.Platform) })
@@ -145,7 +147,7 @@ const Heatmap = (props) => {
   var div = d3.select("#my_dataviz");
   div.selectAll("*").remove();
    initChart(460, 400)
-   drawChart(props.dataset, props.publisher)
+   drawChart(props.dataset, props.platforms)
     return(
      <div>
       <div id="my_dataviz"></div>
