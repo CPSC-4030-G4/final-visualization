@@ -18,7 +18,7 @@ const drawChart =(data, platforms, publisher) => {
   const height = 800 - margin.top - margin.bottom
 
 // append the svg object to the body of the page
-const svg = d3.select("#my_dataviz")
+const svg = d3.select("#heatmap")
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -85,7 +85,7 @@ const svg = d3.select("#my_dataviz")
     }
 
   // create a tooltip
-  const tooltip = d3.select("#my_dataviz")
+  const tooltip = d3.select("#heatmap")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
@@ -157,13 +157,13 @@ svg.append("text")
 }
 
 const Heatmap = (props) => {
-  var div = d3.select("#my_dataviz");
+  var div = d3.select("#heatmap");
   div.selectAll("*").remove();
    initChart(460, 400)
    drawChart(props.dataset, props.platforms, props.publisher)
     return(
      <div>
-      <div id="my_dataviz"></div>
+      <div id="heatmap"></div>
     </div>
     )
 }
