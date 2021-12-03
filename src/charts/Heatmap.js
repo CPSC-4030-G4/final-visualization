@@ -78,11 +78,11 @@ const svg = d3.select("#heatmap")
       .interpolator(d3.interpolateBlues)
       .domain([1,100])
     }
-    if(publisher === "Microsoft"){
-      myColor = d3.scaleSequential()
-        .interpolator(d3.interpolateGreens)
-        .domain([1,100])
-    }
+  if(publisher === "Microsoft"){
+    myColor = d3.scaleSequential()
+      .interpolator(d3.interpolateGreens)
+      .domain([1,100])
+  }
 
   // create a tooltip
   const tooltip = d3.select("#heatmap")
@@ -143,17 +143,18 @@ svg.append("text")
         .attr("y", -50)
         .attr("text-anchor", "left")
         .style("font-size", "22px")
-        .text("Sales of Genre by Platform")
+        .text("Global Sales of Genre by Platform (in millions")
 
 // Add subtitle to graph
-svg.append("text")
-        .attr("x", 0)
-        .attr("y", -20)
-        .attr("text-anchor", "left")
-        .style("font-size", "14px")
-        .style("fill", "grey")
-        .style("max-width", 400)
-        .text("Total sales of a genre on a given platform (in millions)")
+// svg.append("text")
+//         .attr("x", 0)
+//         .attr("y", -20)
+//         .attr("text-anchor", "left")
+//         .style("font-size", "14px")
+//         .style("fill", "grey")
+//         .style("max-width", 400)
+//         .text("Global sales of a genre on a given platform (in millions)")
+
 }
 
 const Heatmap = (props) => {
@@ -161,11 +162,30 @@ const Heatmap = (props) => {
   div.selectAll("*").remove();
    initChart(460, 400)
    drawChart(props.dataset, props.platforms, props.publisher)
+   if (props.publisher == "Nintendo") {
     return(
      <div>
       <div id="heatmap"></div>
+      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191037796544522/Screen_Shot_2021-12-02_at_11.55.49_PM.png" width="800" height="42"></img>
     </div>
     )
+  }
+  if (props.publisher == "Sony") {
+    return(
+     <div>
+      <div id="heatmap"></div>
+      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191228670935080/Screen_Shot_2021-12-02_at_11.56.41_PM.png" width="800" height="42"></img>
+    </div>
+    )
+  }
+  if (props.publisher == "Microsoft") {
+    return(
+     <div>
+      <div id="heatmap"></div>
+      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191394438185000/Screen_Shot_2021-12-02_at_11.57.20_PM.png" width="800" height="42"></img>
+    </div>
+    )
+  }
 }
 
 export default Heatmap
