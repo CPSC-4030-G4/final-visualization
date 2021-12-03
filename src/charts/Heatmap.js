@@ -13,6 +13,7 @@ const initChart = (h, w) => {
 }
 
 const drawChart =(data, platforms, publisher) => {
+  console.log(publisher)
   const margin = {top: 80, right: 25, bottom: 30, left: 50}
   const width = 900 - margin.left - margin.right 
   const height = 800 - margin.top - margin.bottom

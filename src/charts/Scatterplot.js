@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import React from 'react';
 import * as d3 from 'd3'
 import { MenuItem, FormControl, InputLabel, Box, Select } from "@mui/material";
 
@@ -297,6 +298,7 @@ dots.transition()
 
 const Scatterplot = (props) => {
   const [regions, setRegions] = useState("naveu")
+  const [loaded, setLoaded] = useState(false)
   const handleChange = (event) => {
     console.log(event.target.value)
     setRegions(event.target.value)
@@ -306,6 +308,15 @@ const Scatterplot = (props) => {
   div.selectAll("*").remove();
   drawChart(props.dataset, props.platforms, regions)
 
+  if(props.show === false) {
+    return(
+    <div>
+      <h3 id="chart-title"></h3>
+      <div id="my_dataviz"></div> 
+    </div>
+    )
+  }
+  else{
   return (
       <div>
         <h3 id="chart-title"></h3>
@@ -327,8 +338,9 @@ const Scatterplot = (props) => {
               </Select>
               </FormControl>
           </Box>
-      </div>
-    )
+        </div>
+        )
+      }
 }
 
 export default  Scatterplot;
