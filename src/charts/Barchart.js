@@ -47,12 +47,21 @@ const drawChart =(dataset, publisher) => {
   
   // append the svg object to the body of the page
   const svg = d3.select("#bar-graph")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .text("life expectancy (years)")
-  .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .text("life expectancy (years)")
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+svg.append("text")
+                .attr("x", 5)
+                .attr("y", -10)
+                .attr("text-anchor", "left")
+                .style("font-size", "24px")
+                .style("fill", "black")
+                .style("max-width", 400)
+                .text("Sales of Platform by Publisher")
   
   // // Parse the Data
   const data = dataset.filter((d) => d['Global_Sales'] !== 'N/A')
@@ -171,7 +180,6 @@ const Barchart = (props) => {
 
  return (
  <div>
-   <h1>Bar Graph</h1>
     <h3 id="chart-title"></h3>
     <div id="bar-graph"> 
     </div>
