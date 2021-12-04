@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import { useState } from "react";
+import './Heatmap.css'
+import { Grid } from "@mui/material";
 import * as d3 from 'd3';
 
 const initChart = (h, w) => {
@@ -144,7 +147,8 @@ svg.append("text")
         .attr("y", -50)
         .attr("text-anchor", "left")
         .style("font-size", "22px")
-        .text("Global Sales of Genre by Platform (in millions")
+        .text("Global Sales of Genre by Platform (in millions)")
+
 
 // Add subtitle to graph
 // svg.append("text")
@@ -158,35 +162,20 @@ svg.append("text")
 
 }
 
+
+
 const Heatmap = (props) => {
+  const [render, setRender] = useState(false)
   var div = d3.select("#heatmap");
   div.selectAll("*").remove();
    initChart(460, 400)
    drawChart(props.dataset, props.platforms, props.publisher)
-   if (props.publisher == "Nintendo") {
     return(
      <div>
-      <div id="heatmap"></div>
-      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191037796544522/Screen_Shot_2021-12-02_at_11.55.49_PM.png" width="800" height="42"></img>
+          <div id="heatmap"></div>
+          <svg id="legend"></svg>
     </div>
     )
-  }
-  if (props.publisher == "Sony") {
-    return(
-     <div>
-      <div id="heatmap"></div>
-      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191228670935080/Screen_Shot_2021-12-02_at_11.56.41_PM.png" width="800" height="42"></img>
-    </div>
-    )
-  }
-  if (props.publisher == "Microsoft") {
-    return(
-     <div>
-      <div id="heatmap"></div>
-      <img src="https://cdn.discordapp.com/attachments/593601038162984961/916191394438185000/Screen_Shot_2021-12-02_at_11.57.20_PM.png" width="800" height="42"></img>
-    </div>
-    )
-  }
 }
 
 export default Heatmap
