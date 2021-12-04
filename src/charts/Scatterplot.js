@@ -1,5 +1,4 @@
 import {useState, useEffect} from "react";
-import React from 'react';
 import * as d3 from 'd3'
 import { MenuItem, FormControl, InputLabel, Box, Select } from "@mui/material";
 
@@ -9,9 +8,9 @@ const drawChart = (data, platforms, region) => {
       return platforms.includes(d['Platform'])
   })
 
-    const margin = {top: 40, right: 40, bottom: 40, left: 40}
-    const width = 1500 - margin.left - margin.right
-    const height = 850 - margin.top - margin.bottom;
+    const margin = {top: 30, right: 30, bottom: 40, left: 40}
+    const width = 1125 - margin.left - margin.right
+    const height = 638 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   const svg = d3.select("#my_dataviz")
@@ -233,7 +232,6 @@ const drawChart = (data, platforms, region) => {
 
 const Scatterplot = (props) => {
   const [regions, setRegions] = useState("naveu")
-  const [loaded, setLoaded] = useState(false)
   const handleChange = (event) => {
     console.log(event.target.value)
     setRegions(event.target.value)
@@ -243,15 +241,6 @@ const Scatterplot = (props) => {
   div.selectAll("*").remove();
   drawChart(props.dataset, props.platforms, regions)
 
-  if(props.show === false) {
-    return(
-    <div>
-      <h3 id="chart-title"></h3>
-      <div id="my_dataviz"></div> 
-    </div>
-    )
-  }
-  else{
   return (
       <div>
         <h3 id="chart-title"></h3>
@@ -273,9 +262,8 @@ const Scatterplot = (props) => {
               </Select>
               </FormControl>
           </Box>
-        </div>
-        )
-      }
+      </div>
+    )
 }
 
 export default  Scatterplot;
