@@ -8,7 +8,7 @@ const drawChart = (data, platforms, region) => {
       return platforms.includes(d['Platform'])
   })
 
-    const margin = {top: 30, right: 30, bottom: 40, left: 40}
+    const margin = {top: 30, right: 115, bottom: 40, left: 40}
     const width = 1125 - margin.left - margin.right
     const height = 638 - margin.top - margin.bottom;
 
@@ -20,35 +20,42 @@ const drawChart = (data, platforms, region) => {
                 .append("g")
                 .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+  svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", 0 - (margin.top / 2))
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .text("Sales By Region");
+
   const color = d3.scaleOrdinal()
                 .domain(["Sports", "Platform", "Racing", "Role-Playing", "Shooter", "Simulation", "Action", "Fighting", "Adventure", "Strategy", "Misc", "Puzzle"])
                 .range(["red", "blue", "yellow", "green", "orange", "purple", "pink", "gray", "brown", "lightgreen", "magenta", "cyan"])
 
   // // Handmade legend
-  svg.append("circle").attr("cx",width - 50).attr("cy", margin.top).attr("r", 5).style("fill", "red")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 30).attr("r", 5).style("fill", "yellow")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 45).attr("r", 5).style("fill", "green")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 60).attr("r", 5).style("fill", "orange")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 75).attr("r", 5).style("fill", "purple")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 90).attr("r", 5).style("fill", "pink")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 105).attr("r", 5).style("fill", "gray")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 120).attr("r", 5).style("fill", "brown")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 135).attr("r", 5).style("fill", "lightgreen")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 150).attr("r", 5).style("fill", "magenta")
-  svg.append("circle").attr("cx",width - 50).attr("cy",margin.top + 165).attr("r", 5).style("fill", "cyan")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top).text("Sport").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 15).text("Platformer").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 30).text("Racing").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 45).text("RPG").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 60).text("Shooter").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 75).text("Simulation").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 90).text("Action").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 105).text("Fighting").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 120).text("Adventure").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 135).text("Strategy").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 150).text("Misc").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width - 40).attr("y", margin.top + 165).text("Puzzle").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("circle").attr("cx",width + 20).attr("cy", margin.top).attr("r", 5).style("fill", "red")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "yellow")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 45).attr("r", 5).style("fill", "green")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 60).attr("r", 5).style("fill", "orange")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 75).attr("r", 5).style("fill", "purple")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 90).attr("r", 5).style("fill", "pink")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 105).attr("r", 5).style("fill", "gray")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 120).attr("r", 5).style("fill", "brown")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 135).attr("r", 5).style("fill", "lightgreen")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 150).attr("r", 5).style("fill", "magenta")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 165).attr("r", 5).style("fill", "cyan")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Sport").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Platformer").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Racing").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 45).text("RPG").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 60).text("Shooter").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 75).text("Simulation").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 90).text("Action").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 105).text("Fighting").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 120).text("Adventure").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 135).text("Strategy").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 150).text("Misc").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 165).text("Puzzle").style("font-size", "15px").attr("alignment-baseline","middle")
   // Add X axis
   const xScale = d3.scaleSymlog()
           .domain([0, d3.max(platformed_data, function(d) { return +d["NA_Sales"] })])
