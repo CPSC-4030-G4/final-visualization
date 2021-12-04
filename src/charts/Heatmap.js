@@ -17,9 +17,9 @@ const initChart = (h, w) => {
 
 const drawChart =(data, platforms, publisher) => {
   console.log(publisher)
-  const margin = {top: 80, right: 25, bottom: 30, left: 50}
-  const width = 900 - margin.left - margin.right 
-  const height = 800 - margin.top - margin.bottom
+  const margin = {top: 120, right: 50, bottom: 20, left: 50}
+  const width = 950 - margin.left - margin.right 
+  const height = 500 - margin.top - margin.bottom
 
 // append the svg object to the body of the page
 const svg = d3.select("#heatmap")
@@ -149,6 +149,21 @@ svg.append("text")
         .style("font-size", "22px")
         .text("Global Sales of Genre by Platform (in millions)")
 
+//Legend Text
+svg.append("text")
+.attr("x", 25)
+.attr("y", -90)
+.attr("text-anchor", "left")
+.style("font-size", "18px")
+.text("Low Sales")
+
+svg.append("text")
+.attr("x", 749)
+.attr("y", -90)
+.attr("text-anchor", "right")
+.style("font-size", "18px")
+.text("High Sales")
+
 
 // Add subtitle to graph
 // svg.append("text")
@@ -158,11 +173,9 @@ svg.append("text")
 //         .style("font-size", "14px")
 //         .style("fill", "grey")
 //         .style("max-width", 400)
-//         .text("Global sales of a genre on a given platform (in millions)")
+//         .text("Global Sales of Genre by Platform (in millions)")
 
 }
-
-
 
 const Heatmap = (props) => {
   const [render, setRender] = useState(false)

@@ -14,9 +14,9 @@ const initChart = (h, w) => {
 }
 
 const drawChart =(dataset, publisher) => {
-  const margin = {top: 30, right: 30, bottom: 70, left: 100},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  const margin = {top: 70, right: 30, bottom: 70, left: 100},
+    width = 500 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
   
   const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
   const playstation = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
