@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import Welcome from '../src/Welcome';
 import { csv } from 'd3';
 import dataset from '../src/vgsales.csv';
 import React, { useState } from 'react';
@@ -9,7 +8,6 @@ import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
 import {MenuItem ,Box, FormControl, Select, InputLabel, Stack, Button, Grid} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const GameDataGrid = (data) => {
   console.log(data)
