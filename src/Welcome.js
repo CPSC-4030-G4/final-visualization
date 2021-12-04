@@ -1,6 +1,23 @@
-const Welcome = () => {
+import React from "react";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+
+const Welcome = (props) => {
   return(
     <div>
+      <Box
+      sx={{
+        width: 300,
+        height: 300,
+        backgroundColor: 'primary.dark',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}
+    >
        <h1>Hello, there!</h1>
   <h2></h2>
   <ul>
@@ -23,7 +40,8 @@ const Welcome = () => {
     </ul>
     </li>
   </ul>
-    </div>
+  </Box>
+  </div>
   )
 }
 
