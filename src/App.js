@@ -85,6 +85,11 @@ function App() {
     setRegion(region)
   }
 
+  const filterPlatform = (dataset, platform) => {
+    const filteredData = dataset.map((d) => {
+      console.log(d)
+    })
+  } 
 
   React.useEffect(() => {
     csv(dataset).then(data => {
@@ -99,6 +104,7 @@ function App() {
     <ButtonAppBar publisher={publisher}></ButtonAppBar>  
     </div>
     <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
+    <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
     <Box>
     <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
       <InputLabel id="demo-simple-select-label">Publisher</InputLabel>
@@ -131,11 +137,12 @@ function App() {
           </Select>
           </FormControl>
       </Box>
+      </div>
       <div className='top-container'>
         <div className='chart-style'>
         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
         </div>
-        <div>
+        <div style ={{margin : "60px"}}>
           
         </div>
         <div>
