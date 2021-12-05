@@ -1,4 +1,11 @@
 import logo from './logo.svg';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import './App.css';
 import { csv } from 'd3';
 import dataset from '../src/vgsales.csv';
@@ -6,8 +13,32 @@ import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem ,Box, FormControl, Select, InputLabel, Stack, Button, Grid} from '@mui/material';
+import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+
+ function ButtonAppBar() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            News
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
 
 const GameDataGrid = (data) => {
   console.log(data)
@@ -75,6 +106,9 @@ function App() {
 
     return (
     <div className="App">
+    <div>
+    <ButtonAppBar></ButtonAppBar>  
+    </div>
     <label>Choose a Publisher:</label>
     <Box>
     <FormControl sx={{ m: 1, minWidth: 80 }}>
