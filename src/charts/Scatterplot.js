@@ -8,7 +8,7 @@ const drawChart = (data, platforms, region) => {
       return platforms.includes(d['Platform'])
   })
 
-    const margin = {top: 30, right: 115, bottom: 40, left: 40}
+    const margin = {top: 30, right: 115, bottom: 50, left: 40}
     const width = 1125 - margin.left - margin.right
     const height = 638 - margin.top - margin.bottom;
 
@@ -84,7 +84,7 @@ const drawChart = (data, platforms, region) => {
     .attr("class", "x label")
     .attr("text-anchor", "end")
     .attr("x", (width + margin.right + margin.left) / 2)
-    .attr("y", height + 30)
+    .attr("y", height + 40)
     .text("North America Sales (Millions)");
 
   // // Add Y axis
@@ -97,8 +97,8 @@ const drawChart = (data, platforms, region) => {
   var yLabel = svg.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
-    .attr("x", -(height - margin.top - margin.bottom) / 2)
-    .attr("y", -35)
+    .attr("x", -(height - margin.top - margin.bottom - 50) / 2)
+    .attr("y", -40)
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
     .text("Europe Sales (Millions)");
