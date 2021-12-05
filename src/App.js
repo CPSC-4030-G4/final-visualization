@@ -14,15 +14,21 @@ import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link} from '@mui/material';
+import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link, Avatar} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
  function ButtonAppBar(props) {
    let bColor = props.publisher === "Nintendo" ? "red" : props.publisher === "Microsoft" ? "green" : "blue"
+   const dict = {
+     "Nintendo": "8-bit-mario-11562912925mo81zmly9j.png",
+     "Microsoft": "cgoqo9wrp7e51.png",
+     "Sony": "st,small,507x507-pad,600x600,f8f8f8.u4.jpg"
+   }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{ bgcolor: "#444" }}>
         <Toolbar>
+          <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
           <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
           <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
         </Toolbar>  
