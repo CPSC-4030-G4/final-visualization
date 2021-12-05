@@ -55,8 +55,8 @@ const drawChart =(dataset, publisher, region) => {
                 .attr("transform", `translate(${margin.left},${margin.top})`);
 
 svg.append("text")
-                .attr("x", 5)
-                .attr("y", -10)
+                .attr("x", -15)
+                .attr("y", -30)
                 .attr("text-anchor", "left")
                 .style("font-size", "24px")
                 .style("fill", "black")
