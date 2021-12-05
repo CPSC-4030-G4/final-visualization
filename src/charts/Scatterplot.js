@@ -65,12 +65,12 @@ const drawChart = (data, platforms, region) => {
   // svg.append("text").attr("x", width + 30).attr("y", margin.top + 150).text("Misc").style("font-size", "15px").attr("alignment-baseline","middle")
   // svg.append("text").attr("x", width + 30).attr("y", margin.top + 165).text("Puzzle").style("font-size", "15px").attr("alignment-baseline","middle")
 
-  svg.append("circle").attr("cx",width + 20).attr("cy", margin.top).attr("r", 5).style("fill", "red")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "green")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Nintendo").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Sony").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Microsoft").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("circle").attr("cx",width + 20).attr("cy", margin.top).attr("r", 5).style("fill", "red")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "green")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Nintendo").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Sony").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Microsoft").style("font-size", "15px").attr("alignment-baseline","middle")
 
   // Add X axis
   const xScale = d3.scaleSymlog()
