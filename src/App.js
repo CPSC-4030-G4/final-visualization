@@ -67,14 +67,22 @@ function App() {
   const playstation = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
   const microsoft = ['XB', 'X360', 'XOne']
   const [platforms, setPlatforms] = React.useState(nintendo)
+  const [region, setRegion] = React.useState("Global_Sales")
 
-  const handleChange = (data) => {
+  const handlePublisherChange = (data) => {
     if(show === false) setShow(true) 
-    const publisher = data.target.value 
+    const publisher = data.target.value
     setPublisher(publisher)
     if(publisher === "Nintendo")  setPlatforms(nintendo)
     if(publisher === "Sony")   setPlatforms(playstation)
     if(publisher === "Microsoft")     setPlatforms(microsoft)
+
+  }
+
+  const handleRegionChange = (data) => {
+    if(show === false) setShow(true)
+    const region = data.target.value
+    setRegion(region)
   }
 
 
@@ -98,7 +106,7 @@ function App() {
         label="Publisher"
         value={publisher}
         placeholder='Select Publisher'
-        onChange={handleChange}
+        onChange={handlePublisherChange}
       >
         <MenuItem value="Nintendo">Nintendo</MenuItem>
         <MenuItem value="Sony">Sony</MenuItem>
@@ -106,9 +114,26 @@ function App() {
       </Select>
       </FormControl>
       </Box>
+      <Box>
+        <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
+          <InputLabel id="demo-simple-select-label">Region</InputLabel>
+          <Select
+            label="Region"
+            value={region}
+            placeholder='Select Region'
+            onChange={handleRegionChange}
+          >
+            <MenuItem value="Global_Sales">Global</MenuItem>
+            <MenuItem value="NA_Sales">North America</MenuItem>
+            <MenuItem value="EU_Sales">Europe</MenuItem>
+            <MenuItem value="JP_Sales">Japan</MenuItem>
+
+          </Select>
+          </FormControl>
+      </Box>
       <div className='top-container'>
         <div className='chart-style'>
-        <Barchart dataset={data} platforms={platforms} publisher={publisher}></Barchart>
+        <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
         </div>
         <div>
           
@@ -116,7 +141,7 @@ function App() {
         <div>
           <div>
           <Img publisher={publisher}></Img>
-          <Heatmap dataset={data} platforms={platforms}  publisher={publisher} render={render} setRender={setRender}></Heatmap>
+          <Heatmap dataset={data} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
           </div>
         </div>
       </div>

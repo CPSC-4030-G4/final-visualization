@@ -15,7 +15,7 @@ const initChart = (h, w) => {
       .style("border", "1px solid black")
 }
 
-const drawChart =(data, platforms, publisher) => {
+const drawChart =(data, platforms, publisher, region) => {
   console.log(publisher)
   const margin = {top: 120, right: 50, bottom: 20, left: 75}
   const width = 950 - margin.left - margin.right 
@@ -44,7 +44,7 @@ const svg = d3.select("#heatmap")
   })
 
   platformed_data.forEach((d) => {
-    sales[`${d['Platform']},${d['Genre']}`] += Number(d['Global_Sales'])
+    sales[`${d['Platform']},${d['Genre']}`] += Number(d[region])
   })
   
   console.log(sales)
@@ -147,7 +147,22 @@ svg.append("text")
         .attr("y", -50)
         .attr("text-anchor", "left")
         .style("font-size", "22px")
-        .text("Global Sales of Genre by Platform (in millions)")
+        .text(function () {
+    switch(region) {
+      case "Global_Sales":
+        return "Global Sales of Genre by Platform (Millions)"
+        break;
+      case "NA_Sales":
+        return "North America Sales of Genre by Platform (Millions)"
+        break;
+      case "EU_Sales":
+        return "Europe Sales of Genre by Platform (Millions)"
+        break;
+      case "JP_Sales":
+        return "Japan Sales of Genre by Platform (Millions)"
+        break;
+    }
+  })
 
 //Legend Text
 svg.append("text")
@@ -182,7 +197,7 @@ const Heatmap = (props) => {
   var div = d3.select("#heatmap");
   div.selectAll("*").remove();
    initChart(460, 400)
-   drawChart(props.dataset, props.platforms, props.publisher)
+   drawChart(props.dataset, props.platforms, props.publisher, props.region)
     return(
      <div>
           <div id="heatmap"></div>

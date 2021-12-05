@@ -13,7 +13,7 @@ const initChart = (h, w) => {
       .style("border", "1px solid black")
 }
 
-const drawChart =(dataset, publisher) => {
+const drawChart =(dataset, publisher, region) => {
   const margin = {top: 70, right: 30, bottom: 50, left: 100},
     width = 500 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
@@ -64,7 +64,7 @@ svg.append("text")
                 .text("Sales of Platform by Publisher")
   
   // // Parse the Data
-  const data = dataset.filter((d) => d['Global_Sales'] !== 'N/A')
+  const data = dataset.filter((d) => d[region] !== 'N/A')
   // console.log(data)
   const platformed_data = data.filter((d)=> {
     return platforms.includes(d['Platform'])
@@ -72,7 +72,7 @@ svg.append("text")
   
   
   platformed_data.forEach( d => {
-    sales_map[d['Platform']] += +d['Global_Sales']
+    sales_map[d['Platform']] += +d[region]
   });
   
   console.log(sales_map)
@@ -120,7 +120,22 @@ svg.append("text")
   .attr("dy", ".75em")
   .attr("transform", "rotate(-90)")
   .attr("fill", "black")
-  .text("Global Sales (Millions)")
+  .text( function () {
+    switch(region) {
+      case "Global_Sales":
+        return "Global Sales (Millions)"
+        break;
+      case "NA_Sales":
+        return "North America Sales (Millions)"
+        break;
+      case "EU_Sales":
+        return "Europe Sales (Millions)"
+        break;
+      case "JP_Sales":
+        return "Japan Sales (Millions)"
+        break;
+    }
+  })
   
   const tooltip = d3.select("#bar-graph")
       .append("div")
@@ -176,7 +191,7 @@ const Barchart = (props) => {
   div.selectAll("*").remove();
   console.log(1)
    initChart(460, 400)
-   drawChart(props.dataset, props.publisher)
+   drawChart(props.dataset, props.publisher, props.region)
 
  return (
  <div>
