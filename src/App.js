@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import {border} from '@mui/system'
 import './App.css';
 import { csv } from 'd3';
 import dataset from '../src/vgsales.csv';
@@ -13,46 +14,20 @@ import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid} from '@mui/material';
+import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
- function ButtonAppBar() {
+ function ButtonAppBar(props) {
+   let bColor = props.publisher === "Nintendo" ? "red" : props.publisher === "Microsoft" ? "green" : "blue"
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static"  sx={{ bgcolor: "#444" }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+          <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
+          <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
+        </Toolbar>  
       </AppBar>
     </Box>
-  );
-}
-
-const GameDataGrid = (data) => {
-  console.log(data)
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
-        columns={data.columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </div>
   );
 }
 
@@ -107,11 +82,11 @@ function App() {
     return (
     <div className="App">
     <div>
-    <ButtonAppBar></ButtonAppBar>  
+    <ButtonAppBar publisher={publisher}></ButtonAppBar>  
     </div>
-    <label>Choose a Publisher:</label>
+    <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
     <Box>
-    <FormControl sx={{ m: 1, minWidth: 80 }}>
+    <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
       <InputLabel id="demo-simple-select-label">Publisher</InputLabel>
       <Select
         label="Publisher"
