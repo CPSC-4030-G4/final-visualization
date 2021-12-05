@@ -16,7 +16,6 @@ const initChart = (h, w) => {
 }
 
 const drawChart =(data, platforms, publisher, region) => {
-  console.log(publisher)
   const margin = {top: 120, right: 50, bottom: 41, left: 95}
   const width = 950 - margin.left - margin.right 
   const height = 500 - margin.top - margin.bottom
@@ -35,19 +34,15 @@ const svg = d3.select("#heatmap")
   })
 
   let genre = Array.from(new Set(platformed_data.map(d => d.Genre)))
-  console.log(genre)
   let platform = Array.from(new Set(platformed_data.map(d => d.Platform)))
-  console.log(platform)
   let sales = {}
   platformed_data.forEach(element => {
-    sales[`${element['Platform']},${element['Genre']}`] = 0 
+    sales[`${element['Platform']},${element['Genre']}`] = 0
   })
 
   platformed_data.forEach((d) => {
     sales[`${d['Platform']},${d['Genre']}`] += Number(d[region])
   })
-  
-  console.log(sales)
 
   // Build X scales and axis:
   const x = d3.scaleBand()
@@ -102,7 +97,6 @@ const svg = d3.select("#heatmap")
 
   const onClick = (event, d) => {
     const platAndGenre = [event.target.__data__.Platform, event.target.__data__.Genre ]
-    console.log(platAndGenre)
   }
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event,d) {

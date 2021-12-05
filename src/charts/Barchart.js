@@ -42,9 +42,7 @@ const drawChart =(dataset, publisher, region) => {
   }
   
   platforms.forEach(element => sales_map[element] = 0);
-  
-  console.log(sales_map)
-  
+    
   // append the svg object to the body of the page
   const svg = d3.select("#bar-graph")
                 .append("svg")
@@ -65,7 +63,6 @@ svg.append("text")
   
   // // Parse the Data
   const data = dataset.filter((d) => d[region] !== 'N/A')
-  // console.log(data)
   const platformed_data = data.filter((d)=> {
     return platforms.includes(d['Platform'])
   })
@@ -75,7 +72,6 @@ svg.append("text")
     sales_map[d['Platform']] += +d[region]
   });
   
-  console.log(sales_map)
   const sales = Object.values(sales_map)
   
   const x = d3.scaleBand()
@@ -189,7 +185,6 @@ svg.append("text")
 const Barchart = (props) => {
   var div = d3.select("#bar-graph");
   div.selectAll("*").remove();
-  console.log(1)
    initChart(460, 400)
    drawChart(props.dataset, props.publisher, props.region)
 
