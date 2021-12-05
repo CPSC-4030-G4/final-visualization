@@ -25,8 +25,8 @@ import { DataGrid } from '@mui/x-data-grid';
      "Sony": "st,small,507x507-pad,600x600,f8f8f8.u4.jpg"
    }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  sx={{ bgcolor: "#444" }}>
+    <Box sx={{ flexGrow: 1, marginBottom: 12 }}>
+      <AppBar position="fixed"  sx={{ bgcolor: "#444" }}>
         <Toolbar>
           <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
           <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>

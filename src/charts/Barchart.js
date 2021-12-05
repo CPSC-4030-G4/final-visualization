@@ -14,7 +14,7 @@ const initChart = (h, w) => {
 }
 
 const drawChart =(dataset, publisher, region) => {
-  const margin = {top: 70, right: 30, bottom: 50, left: 100},
+  const margin = {top: 70, right: 30, bottom: 65, left: 100},
     width = 500 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
   
