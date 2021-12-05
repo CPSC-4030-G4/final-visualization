@@ -17,7 +17,7 @@ const initChart = (h, w) => {
 
 const drawChart =(data, platforms, publisher) => {
   console.log(publisher)
-  const margin = {top: 120, right: 50, bottom: 20, left: 75}
+  const margin = {top: 120, right: 50, bottom: 41, left: 95}
   const width = 950 - margin.left - margin.right 
   const height = 500 - margin.top - margin.bottom
 
@@ -148,6 +148,27 @@ svg.append("text")
         .attr("text-anchor", "left")
         .style("font-size", "22px")
         .text("Global Sales of Genre by Platform (in millions)")
+
+
+svg.append("text")
+.attr("class", "y label")
+.attr("text-anchor", "end")
+.attr("x", -(height) / 3)
+.attr("y", -85)
+.attr("dy", ".75em")
+.attr("transform", "rotate(-90)")
+.attr("fill", "black")
+.style("font-size", "20px")
+.text("Platform")
+
+svg.append("text")
+.attr("class", "x label")
+.attr("text-anchor", "end")
+.attr("x", width / 2)
+.attr("y", height + 40)
+.text(`Genre`)
+.style("font-size", "20px")
+.attr("fill", "black")
 
 //Legend Text
 svg.append("text")
