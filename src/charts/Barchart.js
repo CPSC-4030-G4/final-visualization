@@ -61,7 +61,7 @@ svg.append("text")
                 .style("font-size", "24px")
                 .style("fill", "black")
                 .style("max-width", 400)
-                .text("Sales of Platform by Publisher")
+                .text("Sales of System by Publisher")
   
   // // Parse the Data
   const data = dataset.filter((d) => d[region] !== 'N/A')
@@ -96,7 +96,7 @@ svg.append("text")
             .attr("text-anchor", "end")
             .attr("x", width / 1.5)
             .attr("y", height + 50)
-            .text(`Platforms developed by ${publisher}`)
+            .text(`Systems developed by ${publisher}`)
             .attr("fill", "black")
 
     svg.append("circle").attr("cx",width - 50).attr("cy", margin.top).attr("r", 5).style("fill", "red")
