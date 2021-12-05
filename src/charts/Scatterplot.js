@@ -27,41 +27,57 @@ const drawChart = (data, platforms, region) => {
     .style("font-size", "16px")
     .text("Sales By Region");
 
+    const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
+    const sony = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
+    const microsoft = ['XB', 'X360', 'XOne']
+
+  // const color = d3.scaleOrdinal()
+  //               .domain(["Sports", "Platform", "Racing", "Role-Playing", "Shooter", "Simulation", "Action", "Fighting", "Adventure", "Strategy", "Misc", "Puzzle"])
+  //               .range(["red", "blue", "yellow", "green", "orange", "purple", "pink", "gray", "brown", "lightgreen", "magenta", "cyan"])
+
   const color = d3.scaleOrdinal()
-                .domain(["Sports", "Platform", "Racing", "Role-Playing", "Shooter", "Simulation", "Action", "Fighting", "Adventure", "Strategy", "Misc", "Puzzle"])
-                .range(["red", "blue", "yellow", "green", "orange", "purple", "pink", "gray", "brown", "lightgreen", "magenta", "cyan"])
+                .domain(["Nintendo", "Sony", "Microsoft"])
+                .range(["red", "blue", "green"])
 
   // // Handmade legend
+  // svg.append("circle").attr("cx",width + 20).attr("cy", margin.top).attr("r", 5).style("fill", "red")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "yellow")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 45).attr("r", 5).style("fill", "green")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 60).attr("r", 5).style("fill", "orange")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 75).attr("r", 5).style("fill", "purple")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 90).attr("r", 5).style("fill", "pink")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 105).attr("r", 5).style("fill", "gray")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 120).attr("r", 5).style("fill", "brown")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 135).attr("r", 5).style("fill", "lightgreen")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 150).attr("r", 5).style("fill", "magenta")
+  // svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 165).attr("r", 5).style("fill", "cyan")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Sport").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Platformer").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Racing").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 45).text("RPG").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 60).text("Shooter").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 75).text("Simulation").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 90).text("Action").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 105).text("Fighting").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 120).text("Adventure").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 135).text("Strategy").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 150).text("Misc").style("font-size", "15px").attr("alignment-baseline","middle")
+  // svg.append("text").attr("x", width + 30).attr("y", margin.top + 165).text("Puzzle").style("font-size", "15px").attr("alignment-baseline","middle")
+
   svg.append("circle").attr("cx",width + 20).attr("cy", margin.top).attr("r", 5).style("fill", "red")
   svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 15).attr("r", 5).style("fill", "blue")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "yellow")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 45).attr("r", 5).style("fill", "green")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 60).attr("r", 5).style("fill", "orange")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 75).attr("r", 5).style("fill", "purple")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 90).attr("r", 5).style("fill", "pink")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 105).attr("r", 5).style("fill", "gray")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 120).attr("r", 5).style("fill", "brown")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 135).attr("r", 5).style("fill", "lightgreen")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 150).attr("r", 5).style("fill", "magenta")
-  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 165).attr("r", 5).style("fill", "cyan")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Sport").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Platformer").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Racing").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 45).text("RPG").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 60).text("Shooter").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 75).text("Simulation").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 90).text("Action").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 105).text("Fighting").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 120).text("Adventure").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 135).text("Strategy").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 150).text("Misc").style("font-size", "15px").attr("alignment-baseline","middle")
-  svg.append("text").attr("x", width + 30).attr("y", margin.top + 165).text("Puzzle").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("circle").attr("cx",width + 20).attr("cy",margin.top + 30).attr("r", 5).style("fill", "green")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top).text("Nintendo").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 15).text("Sony").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("text").attr("x", width + 30).attr("y", margin.top + 30).text("Microsoft").style("font-size", "15px").attr("alignment-baseline","middle")
+
   // Add X axis
   const xScale = d3.scaleSymlog()
           .domain([0, d3.max(platformed_data, function(d) { return +d["NA_Sales"] })])
           .range([ 0, width]);
 
-          
+
   var xAxis = d3.axisBottom(xScale)
 
   var xLabel = svg.append("text")
@@ -126,7 +142,17 @@ const drawChart = (data, platforms, region) => {
                 .attr("cx", function (d) { return xScale(+d["NA_Sales"]); } )
                 .attr("cy", function (d) { return yScale(+d["EU_Sales"]); } )
                 .attr("r", 5)
-                .style("fill", function (d) {return color(d.Genre)})
+                .style("fill", function (d) {
+                  if (nintendo.includes(d.Platform)) {
+                    return color("Nintendo")
+                  }
+                  else if (sony.includes(d.Platform)) {
+                    return color("Sony")
+                  }
+                  else {
+                    return color("Microsoft")
+                  }
+                })
                 .style("padding", "10px")
                 .attr("stroke", "#000000")
                 .attr("stroke-width", "1.5")
@@ -160,7 +186,17 @@ const drawChart = (data, platforms, region) => {
       .attr("cx", function (d) { return xScale(+d[xRegion]); } )
       .attr("cy", function (d) { return yScale(+d[yRegion]); } )
       .attr("r", 5)
-      .style("fill", function (d) {return color(d.Genre)})
+      .style("fill", function (d) {
+        if (nintendo.includes(d.Platform)) {
+          return color("Nintendo")
+        }
+        else if (sony.includes(d.Platform)) {
+          return color("Sony")
+        }
+        else {
+          return color("Microsoft")
+        }
+      })
       .style("padding", "10px")
       .attr("stroke", "#000000")
       .attr("stroke-width", "1.5")
@@ -191,7 +227,17 @@ const drawChart = (data, platforms, region) => {
       .attr("cx", function (d) { return xScale(+d[xRegion]); } )
       .attr("cy", function (d) { return yScale(+d[yRegion]); } )
       .attr("r", 5)
-      .style("fill", function (d) {return color(d.Genre)})
+      .style("fill", function (d) {
+        if (nintendo.includes(d.Platform)) {
+          return color("Nintendo")
+        }
+        else if (sony.includes(d.Platform)) {
+          return color("Sony")
+        }
+        else {
+          return color("Microsoft")
+        }
+      })
       .style("padding", "10px")
       .attr("stroke", "#000000")
       .attr("stroke-width", "1.5")
@@ -223,7 +269,17 @@ const drawChart = (data, platforms, region) => {
       .attr("cx", function (d) { return xScale(+d[xRegion]); } )
       .attr("cy", function (d) { return yScale(+d[yRegion]); } )
       .attr("r", 5)
-      .style("fill", function (d) {return color(d.Genre)})
+      .style("fill", function (d) {
+        if (nintendo.includes(d.Platform)) {
+          return color("Nintendo")
+        }
+        else if (sony.includes(d.Platform)) {
+          return color("Sony")
+        }
+        else {
+          return color("Microsoft")
+        }
+      })
       .style("padding", "10px")
       .attr("stroke", "#000000")
       .attr("stroke-width", "1.5")
