@@ -150,16 +150,16 @@ svg.append("text")
         .text(function () {
     switch(region) {
       case "Global_Sales":
-        return "Global Sales of Genre by Platform (Millions)"
+        return "Sales of Genre by Platform (Global Sales)"
         break;
       case "NA_Sales":
-        return "North America Sales of Genre by Platform (Millions)"
+        return "Sales of Genre by Platform (North America Sales)"
         break;
       case "EU_Sales":
-        return "Europe Sales of Genre by Platform (Millions)"
+        return "Sales of Genre by Platform (Europe Sales)"
         break;
       case "JP_Sales":
-        return "Japan Sales of Genre by Platform (Millions)"
+        return "Sales of Genre by Platform (Japan Sales)"
         break;
     }
   })
