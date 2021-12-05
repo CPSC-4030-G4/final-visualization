@@ -17,7 +17,7 @@ const initChart = (h, w) => {
 
 const drawChart =(data, platforms, publisher) => {
   console.log(publisher)
-  const margin = {top: 120, right: 50, bottom: 20, left: 50}
+  const margin = {top: 120, right: 50, bottom: 20, left: 75}
   const width = 950 - margin.left - margin.right 
   const height = 500 - margin.top - margin.bottom
 
@@ -186,7 +186,6 @@ const Heatmap = (props) => {
     return(
      <div>
           <div id="heatmap"></div>
-          <svg id="legend"></svg>
     </div>
     )
 }
