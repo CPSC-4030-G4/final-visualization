@@ -187,14 +187,14 @@ svg.append("text")
 
 //Legend Text
 svg.append("text")
-.attr("x", 0)
+.attr("x", -20)
 .attr("y", -90)
 .attr("text-anchor", "left")
 .style("font-size", "18px")
 .text("Low Sales")
 
 svg.append("text")
-.attr("x", 716)
+.attr("x", 696)
 .attr("y", -90)
 .attr("text-anchor", "right")
 .style("font-size", "18px")
