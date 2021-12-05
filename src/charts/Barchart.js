@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as d3 from 'd3';
+import * as tip from 'd3-tip'
 import {MenuItem , FormControl, Select, InputLabel} from '@mui/material'
 
 const initChart = (h, w) => {
@@ -143,7 +144,8 @@ svg.append("text")
       .style("border-width", "2px")
       .style("border-radius", "5px")
       .style("padding", "5px")
-
+    
+      /* Invoke the tip in the context of your visualization */
       const mouseover = function(event,d) {
       tooltip
         .style("opacity", 1)
@@ -152,8 +154,11 @@ svg.append("text")
         .style("opacity", 1)
     }
     const mousemove = function(event,d) {
+      const platform = platformed_data.filter((d) => d.Platform === event.target.__data__.Platform)
+      const sorted = platform.sort((a,b) => b.Gobal_Sales - a.Gobal_Sales)
+      console.log(sorted[0].Name)
       tooltip
-        .html(`$ ${(+sales_map[d['Platform']] * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
+        .html(`Top Selling ${d['Platform']} game: ${sorted[0].Name}` + "<br/>" + `$ ${(+sales_map[d['Platform']] * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
         .style("left", (event.x)/2 + "px")
         .style("top", (event.y)/2 + "px")
         .attr("fill", "black")
@@ -180,6 +185,11 @@ svg.append("text")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
+    .on('click', (event,d) => {
+      const platform = platformed_data.filter((d) => d.Platform === event.target.__data__.Platform)
+      const sorted = platform.sort((a,b) => b.Gobal_Sales - a.Gobal_Sales)
+      console.log(sorted[0].Name)
+    })
 }
 
 const Barchart = (props) => {
