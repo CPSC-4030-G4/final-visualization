@@ -100,6 +100,10 @@ const svg = d3.select("#heatmap")
     .style("border-radius", "5px")
     .style("padding", "5px")
 
+  const onClick = (event, d) => {
+    const platAndGenre = [event.target.__data__.Platform, event.target.__data__.Genre ]
+    console.log(platAndGenre)
+  }
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event,d) {
     tooltip
@@ -140,6 +144,7 @@ const svg = d3.select("#heatmap")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
+    .on('click', onClick)
 
 // Add title to graph
 svg.append("text")
