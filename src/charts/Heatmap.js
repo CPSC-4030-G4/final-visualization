@@ -150,16 +150,16 @@ svg.append("text")
         .text(function () {
     switch(region) {
       case "Global_Sales":
-        return "Sales of Genre by Platform (Global Sales)"
+        return "Sales of Genre by System (Global Sales)"
         break;
       case "NA_Sales":
-        return "Sales of Genre by Platform (North America Sales)"
+        return "Sales of Genre by System (North America Sales)"
         break;
       case "EU_Sales":
-        return "Sales of Genre by Platform (Europe Sales)"
+        return "Sales of Genre by System (Europe Sales)"
         break;
       case "JP_Sales":
-        return "Sales of Genre by Platform (Japan Sales)"
+        return "Sales of Genre by System (Japan Sales)"
         break;
     }
   })
@@ -174,7 +174,7 @@ svg.append("text")
 .attr("transform", "rotate(-90)")
 .attr("fill", "black")
 .style("font-size", "20px")
-.text("Platform")
+.text("System")
 
 svg.append("text")
 .attr("class", "x label")
