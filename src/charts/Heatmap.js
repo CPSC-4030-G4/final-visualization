@@ -186,7 +186,6 @@ const Heatmap = (props) => {
     return(
      <div>
           <div id="heatmap"></div>
-          <svg id="legend"></svg>
     </div>
     )
 }
