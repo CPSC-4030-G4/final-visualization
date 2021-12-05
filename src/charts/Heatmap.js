@@ -75,17 +75,17 @@ const svg = d3.select("#heatmap")
   if(publisher === "Nintendo"){
   myColor = d3.scaleSequential()
     .interpolator(d3.interpolateReds)
-    .domain([1,100])
+    .domain(d3.extent(data, d => +d[region]))
   }
   if(publisher === "Sony"){
     myColor = d3.scaleSequential()
       .interpolator(d3.interpolateBlues)
-      .domain([1,100])
+      .domain(d3.extent(data, d => +d[region]))
     }
   if(publisher === "Microsoft"){
     myColor = d3.scaleSequential()
       .interpolator(d3.interpolateGreens)
-      .domain([1,100])
+      .domain(d3.extent(data, d => +d[region]))
   }
 
   // create a tooltip
