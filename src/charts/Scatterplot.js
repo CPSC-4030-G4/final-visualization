@@ -189,13 +189,18 @@ const drawChart = (data, platforms, region, filterPlat) => {
       .on("zoom", function (e) { updateChart(e, "NA_Sales", "EU_Sales") });
 
   // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-  var zoomZone = svg.append("rect")
+  var rect = svg.append("rect")
       .attr("width", width)
       .attr("height", height)
       .style("fill", "none")
       .style("pointer-events", "all")
       .lower()
       .call(zoom);
+
+  d3.select("button").on("click", function() {
+    var newTransform = d3.zoomIdentity.scale(1);
+    rect.call(zoom.transform, newTransform);
+  })
 
   // now the user can zoom and it will trigger the function called updateChart
 
