@@ -183,18 +183,20 @@ const drawChart = (data, platforms, region, filterPlat) => {
 
   // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
   var zoom = d3.zoom()
-      .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
+      .scaleExtent([1, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
+      .translateExtent([[0, 0], [width, height]])
       .extent([[0, 0], [width, height]])
       .on("zoom", function (e) { updateChart(e, "NA_Sales", "EU_Sales") });
 
   // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-  svg.append("rect")
+  var zoomZone = svg.append("rect")
       .attr("width", width)
       .attr("height", height)
       .style("fill", "none")
       .style("pointer-events", "all")
       .lower()
       .call(zoom);
+
   // now the user can zoom and it will trigger the function called updateChart
 
   // A function that updates the chart when the user zoom and thus new boundaries are available
@@ -353,23 +355,25 @@ const Scatterplot = (props) => {
       <div>
         <h3 id="chart-title"></h3>
         <div id="my_dataviz"></div>
-          <label>Choose the regions to compare:</label>
-          <Box>
-            <FormControl sx={{ m: 1, minWidth: 80 }}>
-              <InputLabel id="demo-simple-select-label">Regions</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Publisher"
-                value={regions}
-                onChange={handleChange}
-              >
-                <MenuItem value="naveu">North America vs. Europe</MenuItem>
-                <MenuItem value="navjp">North America vs. Japan</MenuItem>
-                <MenuItem value="euvjp">Europe vs. Japan</MenuItem>
-              </Select>
-              </FormControl>
-          </Box>
+          <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
+            <Box>
+              <FormControl sx={{ m: 1, minWidth: 80 }}>
+                <InputLabel id="demo-simple-select-label">Regions</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Publisher"
+                  value={regions}
+                  onChange={handleChange}
+                >
+                  <MenuItem value="naveu">North America vs. Europe</MenuItem>
+                  <MenuItem value="navjp">North America vs. Japan</MenuItem>
+                  <MenuItem value="euvjp">Europe vs. Japan</MenuItem>
+                </Select>
+                </FormControl>
+            </Box>
+            <button id="Reset">Reset Zoom</button>
+          </div>
       </div>
     )
 }
