@@ -146,16 +146,14 @@ svg.append("text")
     switch(region) {
       case "Global_Sales":
         return "Sales of Genre by System (Global Sales)"
-        break;
       case "NA_Sales":
         return "Sales of Genre by System (North America Sales)"
-        break;
       case "EU_Sales":
         return "Sales of Genre by System (Europe Sales)"
-        break;
       case "JP_Sales":
         return "Sales of Genre by System (Japan Sales)"
-        break;
+      default:
+        return "Invalid Region"
     }
   })
 
