@@ -121,16 +121,14 @@ svg.append("text")
     switch(region) {
       case "Global_Sales":
         return "Global Sales (Millions)"
-        break;
       case "NA_Sales":
         return "North America Sales (Millions)"
-        break;
       case "EU_Sales":
         return "Europe Sales (Millions)"
-        break;
       case "JP_Sales":
         return "Japan Sales (Millions)"
-        break;
+      default:
+        return "Invalid Region"
     }
   })
   
@@ -160,7 +158,6 @@ svg.append("text")
     const mousemove = function(event,d) {
       const platform = platformed_data.filter((d) => d.Platform === event.target.__data__.Platform)
       const sorted = platform.sort((a,b) => b.Global_Sales - a.Global_Sales)
-      console.log(sorted[0].Name)
       tooltip
         .html(`Top Selling ${d['Platform']} game: ${sorted[0].Name}` + "<br/>" + `$ ${(+sales_map[d['Platform']] * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
         .style("left", (event.x)/2 + "px")
