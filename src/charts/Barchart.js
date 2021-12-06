@@ -14,7 +14,7 @@ const initChart = (h, w) => {
       .style("border", "1px solid black")
 }
 
-const drawChart =(dataset, publisher, region) => {
+const drawChart =(dataset, publisher, region, filterFunc, setFilterData) => {
   const margin = {top: 70, right: 30, bottom: 65, left: 100},
     width = 500 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
@@ -185,18 +185,22 @@ svg.append("text")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-    .on('click', (event,d) => {
+    .on('click', (event, d) => {
+      d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
       const platform = platformed_data.filter((d) => d.Platform === event.target.__data__.Platform)
       const sorted = platform.sort((a,b) => b.Gobal_Sales - a.Gobal_Sales)
-      console.log(sorted[0].Name)
+      filterFunc(sorted[0].Platform)
+      setFilterData(dataset.filter(d => d.Platform === sorted[0].Platform))
     })
-}
+  }
 
 const Barchart = (props) => {
   var div = d3.select("#bar-graph");
   div.selectAll("*").remove();
    initChart(460, 400)
-   drawChart(props.dataset, props.publisher, props.region)
+   drawChart(props.dataset, props.publisher, props.region, props.filterFunc, props.filterDataFunc)
 
  return (
  <div>

@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {border} from '@mui/system'
+import MainView from './MainView';
+import Welcome from './Welcome';
 import './App.css';
 import { csv } from 'd3';
 import dataset from '../src/vgsales.csv';
@@ -57,109 +59,115 @@ const Img = (props) => {
 
 
 function App() {
-  const [data, setData] = React.useState([]);
-  const [welcomed, setWelcomed] = useState(false)
-  const [render, setRender] = React.useState(false)
-  const [loading, setLoading] = React.useState(true);
-  const [show, setShow] = useState(false)
-  const [publisher, setPublisher] = React.useState("Nintendo")
-  const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
-  const playstation = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
-  const microsoft = ['XB', 'X360', 'XOne']
-  const [platforms, setPlatforms] = React.useState(nintendo)
-  const [region, setRegion] = React.useState("Global_Sales")
-
-
-  const handlePublisherChange = (data) => {
-    if(show === false) setShow(true)
-    const publisher = data.target.value
-    setPublisher(publisher)
-    if(publisher === "Nintendo")  setPlatforms(nintendo)
-    if(publisher === "Sony")   setPlatforms(playstation)
-    if(publisher === "Microsoft")     setPlatforms(microsoft)
-
+  const [continued, setContinued] = useState(false)
+  if(!continued) {
+    return <Welcome setContinued={setContinued}></Welcome>
   }
-
-  const handleRegionChange = (data) => {
-    if(show === false) setShow(true)
-    const region = data.target.value
-    setRegion(region)
+  else{
+  return <MainView></MainView>
   }
+  // const [data, setData] = React.useState([]);
+  // const [welcomed, setWelcomed] = useState(false)
+  // const [render, setRender] = React.useState(false)
+  // const [loading, setLoading] = React.useState(true);
+  // const [show, setShow] = useState(false)
+  // const [publisher, setPublisher] = React.useState("Nintendo")
+  // const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
+  // const playstation = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
+  // const microsoft = ['XB', 'X360', 'XOne']
+  // const [platforms, setPlatforms] = React.useState(nintendo)
+  // const [region, setRegion] = React.useState("Global_Sales")
 
-  const filterPlatform = (dataset, platform) => {
-    const filteredData = dataset.map((d) => {
-      console.log(d)
-    })
-  }
+  // const handlePublisherChange = (data) => {
+  //   if(show === false) setShow(true) 
+  //   const publisher = data.target.value
+  //   setPublisher(publisher)
+  //   if(publisher === "Nintendo")  setPlatforms(nintendo)
+  //   if(publisher === "Sony")   setPlatforms(playstation)
+  //   if(publisher === "Microsoft")     setPlatforms(microsoft)
 
-  React.useEffect(() => {
-    csv(dataset).then(data => {
-      setData(data);
-      setLoading(false);
-    });
-  }, []);
+  // }
 
-    return (
-    <div className="App">
-    <div>
-    <ButtonAppBar publisher={publisher}></ButtonAppBar>
-    </div>
-    <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
-    <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
-    <Box>
-    <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
-      <InputLabel id="demo-simple-select-label">Publisher</InputLabel>
-      <Select
-        label="Publisher"
-        value={publisher}
-        placeholder='Select Publisher'
-        onChange={handlePublisherChange}
-      >
-        <MenuItem value="Nintendo">Nintendo</MenuItem>
-        <MenuItem value="Sony">Sony</MenuItem>
-        <MenuItem value="Microsoft">Microsoft</MenuItem>
-      </Select>
-      </FormControl>
-      </Box>
-      <Box>
-        <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
-          <InputLabel id="demo-simple-select-label">Region</InputLabel>
-          <Select
-            label="Region"
-            value={region}
-            placeholder='Select Region'
-            onChange={handleRegionChange}
-          >
-            <MenuItem value="Global_Sales">Global</MenuItem>
-            <MenuItem value="NA_Sales">North America</MenuItem>
-            <MenuItem value="EU_Sales">Europe</MenuItem>
-            <MenuItem value="JP_Sales">Japan</MenuItem>
+  // const handleRegionChange = (data) => {
+  //   if(show === false) setShow(true)
+  //   const region = data.target.value
+  //   setRegion(region)
+  // }
 
-          </Select>
-          </FormControl>
-      </Box>
-      </div>
-      <div className='top-container'>
-        <div className='chart-style'>
-        <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
-        </div>
-        <div style ={{margin : "60px"}}>
+  // const filterPlatform = (dataset, platform) => {
+  //   const filteredData = dataset.map((d) => {
+  //     console.log(d)
+  //   })
+  // } 
 
-        </div>
-        <div>
-          <div>
-          <Img publisher={publisher}></Img>
-          <Heatmap dataset={data} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
-          </div>
-        </div>
-      </div>
-        <div className='bottom-container'>
-          <div>
-            <Scatterplot dataset={data} platforms={platforms} publisher={publisher} show={show}></Scatterplot>
-          </div>
-        </div>
-    </div>
-  );
+  // React.useEffect(() => {
+  //   csv(dataset).then(data => {
+  //     setData(data);
+  //     setLoading(false);
+  //   });
+  // }, []);
+
+  //   return (
+  //   <div className="App">
+  //   <div>
+  //   <ButtonAppBar publisher={publisher}></ButtonAppBar>  
+  //   </div>
+  //   <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
+  //   <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
+  //   <Box>
+  //   <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
+  //     <InputLabel id="demo-simple-select-label">Publisher</InputLabel>
+  //     <Select
+  //       label="Publisher"
+  //       value={publisher}
+  //       placeholder='Select Publisher'
+  //       onChange={handlePublisherChange}
+  //     >
+  //       <MenuItem value="Nintendo">Nintendo</MenuItem>
+  //       <MenuItem value="Sony">Sony</MenuItem>
+  //       <MenuItem value="Microsoft">Microsoft</MenuItem>
+  //     </Select>
+  //     </FormControl>
+  //     </Box>
+  //     <Box>
+  //       <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
+  //         <InputLabel id="demo-simple-select-label">Region</InputLabel>
+  //         <Select
+  //           label="Region"
+  //           value={region}
+  //           placeholder='Select Region'
+  //           onChange={handleRegionChange}
+  //         >
+  //           <MenuItem value="Global_Sales">Global</MenuItem>
+  //           <MenuItem value="NA_Sales">North America</MenuItem>
+  //           <MenuItem value="EU_Sales">Europe</MenuItem>
+  //           <MenuItem value="JP_Sales">Japan</MenuItem>
+
+  //         </Select>
+  //         </FormControl>
+  //     </Box>
+  //     </div>
+  //     <div className='top-container'>
+  //       <div className='chart-style'>
+  //       <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
+  //       </div>
+  //       <div style ={{margin : "60px"}}>
+          
+  //       </div>
+  //       <div>
+  //         <div>
+  //         <Img publisher={publisher}></Img>
+  //         <Heatmap dataset={data} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
+  //         </div>
+  //       </div>
+  //     </div>
+  //       <div className='bottom-container'>
+  //         <div>
+  //           <Scatterplot dataset={data} platforms={platforms} publisher={publisher} show={show}></Scatterplot>
+  //         </div>
+  //       </div>
+  //   </div>
+  // );
 }
 
 export default App;
