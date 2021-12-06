@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {border} from '@mui/system'
 import './App.css';
-import { csv } from 'd3';
+import { csv, filter } from 'd3';
 import dataset from '../src/vgsales.csv';
 import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
@@ -62,6 +62,7 @@ import { DataGrid } from '@mui/x-data-grid';
    const [welcomed, setWelcomed] = useState(false)
    const [render, setRender] = React.useState(false)
    const [loading, setLoading] = React.useState(true);
+   const [filterPlat, setFilterPlat] = React.useState(null)
    const [show, setShow] = useState(false)
    const [publisher, setPublisher] = React.useState("Nintendo")
    const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
@@ -69,7 +70,9 @@ import { DataGrid } from '@mui/x-data-grid';
    const microsoft = ['XB', 'X360', 'XOne']
    const [platforms, setPlatforms] = React.useState(nintendo)
    const [region, setRegion] = React.useState("Global_Sales")
- 
+   const [filteredData, setFilteredData] = React.useState([])
+  console.log(filteredData)
+
    const handlePublisherChange = (data) => {
      if(show === false) setShow(true) 
      const publisher = data.target.value
@@ -95,10 +98,12 @@ import { DataGrid } from '@mui/x-data-grid';
    React.useEffect(() => {
      csv(dataset).then(data => {
        setData(data);
+       console.log(filterPlat) 
        setLoading(false);
-     });
+     })  
    }, []);
- 
+
+    console.log(filteredData)
      return (
      <div className="App">
      <div>
@@ -134,14 +139,13 @@ import { DataGrid } from '@mui/x-data-grid';
              <MenuItem value="NA_Sales">North America</MenuItem>
              <MenuItem value="EU_Sales">Europe</MenuItem>
              <MenuItem value="JP_Sales">Japan</MenuItem>
- 
            </Select>
            </FormControl>
        </Box>
        </div>
        <div className='top-container'>
          <div className='chart-style'>
-         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
+         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region} filterFunc={setFilterPlat} filterDataFunc={setFilteredData}></Barchart>
          </div>
          <div style ={{margin : "60px"}}>
            
@@ -155,7 +159,7 @@ import { DataGrid } from '@mui/x-data-grid';
        </div>
          <div className='bottom-container'>
            <div>
-             <Scatterplot dataset={data} platforms={platforms} publisher={publisher} show={show}></Scatterplot>
+             <Scatterplot dataset={filteredData == [] || filteredData.length == 0 ? data : filteredData} platforms={platforms} publisher={publisher} show={show}></Scatterplot>
            </div>
          </div>
      </div>
