@@ -43,18 +43,19 @@ import { DataGrid } from '@mui/x-data-grid';
           </Card>
         </Box>
             <List disablePadding={true} style={{display : "flex", marginLeft: "300px"}}>
-                <ListItem >
-                  <ListItemText primary="&#128994;"/>
-                  <ListItemText primary="Microsoft"/>
+                <ListItem>
+                  <ListItemText primary="&#128308;"/>
+                  <ListItemText primary="Nintendo"/>
                 </ListItem>
                 <ListItem>
                   <ListItemText primary="&#128309;"/>
                   <ListItemText primary="Sony"/>
                 </ListItem>
-                <ListItem>
-                  <ListItemText primary="&#128308;"/>
-                  <ListItemText primary="Nintendo"/>
+                <ListItem >
+                  <ListItemText primary="&#128994;"/>
+                  <ListItemText primary="Microsoft"/>
                 </ListItem>
+
             </List>
          </Toolbar>  
        </AppBar>

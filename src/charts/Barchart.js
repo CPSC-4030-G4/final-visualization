@@ -15,7 +15,7 @@ const initChart = (h, w) => {
 }
 
 const drawChart = (dataset, publisher, region, filterFunc, setFilterData, filterPlat, clicked, clickedFunction) => {
-  const margin = {top: 70, right: 30, bottom: 65, left: 100},
+  const margin = {top: 120, right: 30, bottom: 65, left: 100},
     width = 500 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
   
@@ -109,6 +109,22 @@ svg.append("text")
   svg.append("g")
   .call(d3.axisLeft(y));
   
+  svg.append("text")
+        .attr("x", -25)
+        .attr("y", -75)
+        .attr("text-anchor", "left")
+        .style("font-size", "14px")
+        .style("fill", "grey")
+        .style("max-width", 400)
+        .text("*Hint* - you can select a bar to filter all visualiztions by that system!")
+  svg.append("text")
+        .attr("x", -25)
+        .attr("y", -57)
+        .attr("text-anchor", "left")
+        .style("font-size", "14px")
+        .style("fill", "grey")
+        .style("max-width", 400)
+        .text("*Click again to reset!*")
   svg.append("text")
   .attr("class", "y label")
   .attr("text-anchor", "end")
