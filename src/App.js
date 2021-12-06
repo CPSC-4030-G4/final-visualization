@@ -31,8 +31,8 @@ import { DataGrid } from '@mui/x-data-grid';
       <AppBar position="fixed"  sx={{ bgcolor: "#444" }}>
         <Toolbar>
           <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
-          <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
-          <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
+          <Button size="small" style={{backgroundColor: bColor, color: '#FFFFFF',  border: 1 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Data Source</Button>
+          <Button size="small"  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Source Code</Button>
         </Toolbar>  
       </AppBar>
     </Box>

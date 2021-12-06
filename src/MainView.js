@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {border} from '@mui/system'
 import Card from '@mui/material/Card';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import './App.css';
 import { csv, filter } from 'd3';
 import dataset from '../src/vgsales.csv';
@@ -15,7 +16,7 @@ import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link, Avatar, FormHelperText} from '@mui/material';
+import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link, Avatar, FormHelperText, ListItem, ListItemText, ListItemAvatar, List} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 
@@ -32,15 +33,29 @@ import { DataGrid } from '@mui/x-data-grid';
        <AppBar position="fixed"  sx={{ bgcolor: "#444" }}>
          <Toolbar>
            <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
-           <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
-           <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
-           <Box sx={{ minWidth: 275, marginLeft : "200px" }}>
+           <Button size='small' style={{backgroundColor: bColor, color: '#FFFFFF',  border: 1 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Data Source</Button>
+           <Button size='small' style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , border: 1, borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Source Code</Button>
+           <Box sx={{ minWidth: 275, marginLeft : "400px" }}>
           <Card variant="outlined">Showing Data for 
-          <Typography sx={{ m : .5 }} color="black">
-          <strong>{props.filterPlat !== null ? props.filterPlat : "All Platforms"}</strong>
-      </Typography>
+            <Typography sx={{ m : .5 }} color="black">
+            <strong>{props.filterPlat !== null ? props.filterPlat : "All Platforms"}</strong>
+            </Typography>
           </Card>
         </Box>
+            <List disablePadding={true} style={{display : "flex", marginLeft: "300px"}}>
+                <ListItem >
+                  <ListItemText primary="&#128994;"/>
+                  <ListItemText primary="Microsoft"/>
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="&#128309;"/>
+                  <ListItemText primary="Sony"/>
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="&#128308;"/>
+                  <ListItemText primary="Nintendo"/>
+                </ListItem>
+            </List>
          </Toolbar>  
        </AppBar>
      </Box>
