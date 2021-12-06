@@ -14,7 +14,7 @@ import React, { useState } from 'react';
 import Barchart from './charts/Barchart'
 import Heatmap from './charts/Heatmap'
 import Scatterplot from './charts/Scatterplot';
-import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link, Avatar} from '@mui/material';
+import {MenuItem , FormControl, Select, InputLabel, Stack,  Grid, Link, Avatar, FormHelperText} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 
@@ -115,7 +115,7 @@ import { DataGrid } from '@mui/x-data-grid';
      <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
      <Box>
      <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
-       <InputLabel id="demo-simple-select-label">Publisher</InputLabel>
+       <InputLabel id="demo-simple-select-label">Publisher </InputLabel>
        <Select
          label="Publisher"
          value={publisher}
@@ -126,6 +126,7 @@ import { DataGrid } from '@mui/x-data-grid';
          <MenuItem value="Sony">Sony</MenuItem>
          <MenuItem value="Microsoft">Microsoft</MenuItem>
        </Select>
+       <FormHelperText>Affects All Visualizations</FormHelperText>
        </FormControl>
        </Box>
        <Box>
@@ -142,6 +143,7 @@ import { DataGrid } from '@mui/x-data-grid';
              <MenuItem value="EU_Sales">Europe</MenuItem>
              <MenuItem value="JP_Sales">Japan</MenuItem>
            </Select>
+           <FormHelperText>Affects Only Barchart and Heatmap</FormHelperText>
            </FormControl>
        </Box>
        </div>
@@ -155,7 +157,7 @@ import { DataGrid } from '@mui/x-data-grid';
          <div>
            <div>
            <Img publisher={publisher}></Img>
-           <Heatmap dataset={data} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
+           <Heatmap dataset={filteredData == [] || filteredData.length == 0 ? data : filteredData} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
            </div>
          </div>
        </div>
