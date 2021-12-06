@@ -184,7 +184,7 @@ const drawChart = (data, platforms, region, filterPlat) => {
   // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
   var zoom = d3.zoom()
       .scaleExtent([1, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-      .translateExtent([[0, 0], [width + 15, height + 5]])
+      .translateExtent([[-5, 0], [width + 15, height + 5]])
       .extent([[0, 0], [width, height]])
       .on("zoom", function (e) { updateChart(e, "NA_Sales", "EU_Sales") });
 
