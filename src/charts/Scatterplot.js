@@ -146,10 +146,10 @@ const drawChart = (data, platforms, region, filterPlat) => {
   var clip = svg.append("defs").append("svg:clipPath")
       .attr("id", "clip")
       .append("svg:rect")
-      .attr("width", width + 5 )
-      .attr("height", height + 5)
+      .attr("width", width + 10 )
+      .attr("height", height + 10)
       .attr("x", -1)
-      .attr("y", -4);
+      .attr("y", -10);
 
   // Create the scatter variable: where both the circles and the brush take place
   var scatter = svg.append('g')
@@ -184,7 +184,7 @@ const drawChart = (data, platforms, region, filterPlat) => {
   // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
   var zoom = d3.zoom()
       .scaleExtent([1, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-      .translateExtent([[0, 0], [width, height]])
+      .translateExtent([[0, 0], [width + 15, height + 15]])
       .extent([[0, 0], [width, height]])
       .on("zoom", function (e) { updateChart(e, "NA_Sales", "EU_Sales") });
 
