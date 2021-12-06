@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import './Heatmap.css'
-import { Grid } from "@mui/material";
 import * as d3 from 'd3';
 
 const initChart = (h, w) => {
@@ -99,26 +98,18 @@ const svg = d3.select("#heatmap")
     return [ event.target.__data__.Platform, event.target.__data__.Genre ]
   }
 
-  function removeItem(arr, value) {
-    var index = arr.indexOf(value);
-    if (index > -1) {
-      arr.splice(index, 1);
-    }
-    return arr;
-  }
-
-  const selected = new Set()
+  const platAndGenre = new Set()
 
   const onClick = (event) => {
     const [plat, genre] = getPlatAndGenre(event)
-    if (selected.has(`${plat}_${genre}`)) {
-      selected.delete(`${plat}_${genre}`)
+    if (platAndGenre.has(`${plat}_${genre}`)) {
+      platAndGenre.delete(`${plat}_${genre}`)
       d3.select(this)
         .style("stroke", "black")
         .style("opacity", 1)
     }
     else {
-      selected.add(`${plat}_${genre}`)
+      platAndGenre.add(`${plat}_${genre}`)
       d3.select(this)
         .style("stroke", "red")
         .style("opacity", 1)
@@ -131,13 +122,13 @@ const svg = d3.select("#heatmap")
       .style("opacity", 1)
 
     const [plat, genre] = getPlatAndGenre(event)
-    if (!selected.has(`${plat}_${genre}`)) {
+    if (!platAndGenre.has(`${plat}_${genre}`)) {
       d3.select(this)
         .style("stroke", "black")
         .style("opacity", 1)
     }
   }
-  
+
   const mousemove = function(event,d) {
     tooltip
       .html("$" + Math.round(100*sales[`${d['Platform']},${d['Genre']}`])/100 + " million")
@@ -145,12 +136,12 @@ const svg = d3.select("#heatmap")
       .style("top", (event.y)/2 + "px")
       .attr("fill", "black")
   }
-  const mouseleave = function(event,d) {
+  const mouseleave = function(event) {
     tooltip
       .style("opacity", 0)
 
     const [plat, genre] = getPlatAndGenre(event)
-    if (!selected.has(`${plat}_${genre}`)) {
+    if (!platAndGenre.has(`${plat}_${genre}`)) {
       d3.select(this)
         .style("stroke", "none")
         .style("opacity", 0.8)
@@ -249,6 +240,7 @@ svg.append("text")
 }
 
 const Heatmap = (props) => {
+
   const [render, setRender] = useState(false)
   var div = d3.select("#heatmap");
   div.selectAll("*").remove();

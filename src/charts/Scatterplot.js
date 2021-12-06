@@ -2,6 +2,8 @@ import {useState, useEffect} from "react";
 import * as d3 from 'd3'
 import { MenuItem, FormControl, InputLabel, Box, Select } from "@mui/material";
 
+
+
 const drawChart = (data, platforms, region) => {
 
   const platformed_data = data.filter((d)=> {

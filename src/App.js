@@ -69,8 +69,9 @@ function App() {
   const [platforms, setPlatforms] = React.useState(nintendo)
   const [region, setRegion] = React.useState("Global_Sales")
 
+
   const handlePublisherChange = (data) => {
-    if(show === false) setShow(true) 
+    if(show === false) setShow(true)
     const publisher = data.target.value
     setPublisher(publisher)
     if(publisher === "Nintendo")  setPlatforms(nintendo)
@@ -89,7 +90,7 @@ function App() {
     const filteredData = dataset.map((d) => {
       console.log(d)
     })
-  } 
+  }
 
   React.useEffect(() => {
     csv(dataset).then(data => {
@@ -101,7 +102,7 @@ function App() {
     return (
     <div className="App">
     <div>
-    <ButtonAppBar publisher={publisher}></ButtonAppBar>  
+    <ButtonAppBar publisher={publisher}></ButtonAppBar>
     </div>
     <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
     <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
@@ -143,7 +144,7 @@ function App() {
         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region}></Barchart>
         </div>
         <div style ={{margin : "60px"}}>
-          
+
         </div>
         <div>
           <div>
