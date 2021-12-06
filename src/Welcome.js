@@ -23,7 +23,7 @@ const Welcome = (props) => {
   return(
   <div style={{ justifyContent: "center", textAlign: "center"}}>
     <ButtonAppBar></ButtonAppBar>
-  <h2>Hello, There!</h2>
+  <h2>Hello There!</h2>
   <p>Our visualization project aims to examine the different factors that affect the sales of video games across multiple regions and generations.</p>
   <Button style={{backgroundColor: "red"}} variant="contained" onClick={() => {props.setContinued(true)}} endIcon={<ArrowForwardIosIcon />} >Continue to Dashboard</Button>
   </div>
