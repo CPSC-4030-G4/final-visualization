@@ -82,7 +82,7 @@ import { DataGrid } from '@mui/x-data-grid';
   console.log(filteredData)
 
    const handlePublisherChange = (data) => {
-     if(show === false) setShow(true) 
+     if(show === false) setShow(true)
      const publisher = data.target.value
      setPublisher(publisher)
      if(publisher === "Nintendo")  setPlatforms(nintendo)
@@ -156,7 +156,7 @@ import { DataGrid } from '@mui/x-data-grid';
        </div>
        <div className='top-container'>
          <div className='chart-style'>
-         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region} filterFunc={setFilterPlat} filterDataFunc={setFilteredData}></Barchart>
+         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region} filterFunc={setFilterPlat} filterPlat={filterPlat} filterDataFunc={setFilteredData}></Barchart>
          </div>
          <div style ={{margin : "60px"}}>
            
