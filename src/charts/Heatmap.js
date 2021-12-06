@@ -94,40 +94,14 @@ const svg = d3.select("#heatmap")
     .style("border-radius", "5px")
     .style("padding", "5px")
 
-  function getPlatAndGenre (event) {
-    return [ event.target.__data__.Platform, event.target.__data__.Genre ]
-  }
-
-  const platAndGenre = new Set()
-
-  const onClick = (event) => {
-    const [plat, genre] = getPlatAndGenre(event)
-    if (platAndGenre.has(`${plat}_${genre}`)) {
-      platAndGenre.delete(`${plat}_${genre}`)
-      d3.select(this)
-        .style("stroke", "black")
-        .style("opacity", 1)
-    }
-    else {
-      platAndGenre.add(`${plat}_${genre}`)
-      d3.select(this)
-        .style("stroke", "red")
-        .style("opacity", 1)
-    }
-  }
-
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event) {
     tooltip
       .style("opacity", 1)
-
-    const [plat, genre] = getPlatAndGenre(event)
-    if (!platAndGenre.has(`${plat}_${genre}`)) {
-      d3.select(this)
-        .style("stroke", "black")
-        .style("opacity", 1)
-    }
-  }
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+}
 
   const mousemove = function(event,d) {
     tooltip
@@ -139,13 +113,9 @@ const svg = d3.select("#heatmap")
   const mouseleave = function(event) {
     tooltip
       .style("opacity", 0)
-
-    const [plat, genre] = getPlatAndGenre(event)
-    if (!platAndGenre.has(`${plat}_${genre}`)) {
-      d3.select(this)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
-    }
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
   }
 
   // add the squares
