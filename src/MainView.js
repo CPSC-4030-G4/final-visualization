@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {border} from '@mui/system'
+import Card from '@mui/material/Card';
 import './App.css';
 import { csv, filter } from 'd3';
 import dataset from '../src/vgsales.csv';
@@ -33,6 +34,13 @@ import { DataGrid } from '@mui/x-data-grid';
            <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
            <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
            <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
+           <Box sx={{ minWidth: 275, marginLeft : "500px" }}>
+          <Card variant="outlined">Showing Data for 
+          <Typography sx={{ m : .5 }} color="black">
+          {props.filterPlat !== null ? props.filterPlat : "All Platforms"}
+      </Typography>
+          </Card>
+        </Box>
          </Toolbar>  
        </AppBar>
      </Box>
@@ -109,9 +117,8 @@ import { DataGrid } from '@mui/x-data-grid';
      return (
      <div className="App">
      <div>
-     <ButtonAppBar publisher={publisher}></ButtonAppBar>  
+     <ButtonAppBar publisher={publisher} filterPlat={filterPlat}></ButtonAppBar>  
      </div>
-     <label style={{color: '#FFFFFF', marginTop: "24px" }}>Choose a Publisher:</label>
      <div style={{ display: "flex", justifyContent: "center", marginRight : "100px"}}>
      <Box>
      <FormControl sx={{ m: 1, minWidth: 80, color: 'red'  }}>
