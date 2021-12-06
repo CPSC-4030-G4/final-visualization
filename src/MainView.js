@@ -80,6 +80,8 @@ import { DataGrid } from '@mui/x-data-grid';
      if(publisher === "Nintendo")  setPlatforms(nintendo)
      if(publisher === "Sony")   setPlatforms(playstation)
      if(publisher === "Microsoft")     setPlatforms(microsoft)
+     setFilterPlat(null)
+     setFilteredData([])
  
    }
  
@@ -159,7 +161,7 @@ import { DataGrid } from '@mui/x-data-grid';
        </div>
          <div className='bottom-container'>
            <div>
-             <Scatterplot dataset={filteredData == [] || filteredData.length == 0 ? data : filteredData} platforms={platforms} publisher={publisher} show={show}></Scatterplot>
+             <Scatterplot dataset={filteredData == [] || filteredData.length == 0 ? data : filteredData} platforms={platforms} publisher={publisher} show={show} filterPlat={filterPlat}></Scatterplot>
            </div>
          </div>
      </div>

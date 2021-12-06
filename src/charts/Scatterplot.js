@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import * as d3 from 'd3'
 import { MenuItem, FormControl, InputLabel, Box, Select } from "@mui/material";
 
-const drawChart = (data, platforms, region) => {
+const drawChart = (data, platforms, region, filterPlat) => {
 
   const platformed_data = data.filter((d)=> {
       return platforms.includes(d['Platform'])
@@ -19,13 +19,23 @@ const drawChart = (data, platforms, region) => {
     .append("g")
       .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
-
+  if(filterPlat === null){
   svg.append("text")
     .attr("x", (width / 2))
     .attr("y", 0 - (margin.top / 2))
     .attr("text-anchor", "middle")
     .style("font-size", "16px")
     .text("Sales By Region");
+  }
+  else {
+    svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", 0 - (margin.top / 2))
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .text(`Sales By Region for ${filterPlat}`);
+  }
+
 
   const nintendo = ['Wii', 'GBA', 'GB', 'DS', 'SNES', 'NES', 'WiiU', '3DS', 'GC', 'N64']
   const sony = ['PS2', 'PS3', 'PSV', 'PSP', 'PS', 'PS4']
@@ -337,7 +347,7 @@ const Scatterplot = (props) => {
 
   var div = d3.select("#my_dataviz");
   div.selectAll("*").remove();
-  drawChart(props.dataset, props.platforms, regions)
+  drawChart(props.dataset, props.platforms, regions, props.filterPlat)
 
   return (
       <div>
