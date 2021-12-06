@@ -159,7 +159,7 @@ svg.append("text")
       const platform = platformed_data.filter((d) => d.Platform === event.target.__data__.Platform)
       const sorted = platform.sort((a,b) => b.Global_Sales - a.Global_Sales)
       tooltip
-        .html(`Top Selling ${d['Platform']} game: ${sorted[0].Name}` + "<br/>" + `$ ${(+sales_map[d['Platform']] * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
+        .html(`Overall Sales : $ ${(+sales_map[d['Platform']] * 1000000).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` + "<br/>" +`Top Selling ${d['Platform']} game: ${sorted[0].Name}` )
         .style("left", (event.x)/2 + "px")
         .style("top", (event.y)/2 + "px")
         .attr("fill", "black")
