@@ -135,7 +135,6 @@ const svg = d3.select("#heatmap")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-    .on('click', onClick)
 
 // Add title to graph
 svg.append("text")
