@@ -157,7 +157,7 @@ import { DataGrid } from '@mui/x-data-grid';
          <div>
            <div>
            <Img publisher={publisher}></Img>
-           <Heatmap dataset={data} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
+           <Heatmap dataset={filteredData == [] || filteredData.length == 0 ? data : filteredData} platforms={platforms}  publisher={publisher} region={region} render={render} setRender={setRender}></Heatmap>
            </div>
          </div>
        </div>
