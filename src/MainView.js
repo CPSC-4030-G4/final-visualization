@@ -34,10 +34,10 @@ import { DataGrid } from '@mui/x-data-grid';
            <Avatar sx={{ marginRight: "12px" }} src={'/' + dict[props.publisher]}></Avatar>
            <Button style={{backgroundColor: bColor, color: '#FFFFFF',  border: 4 , borderColor: 'primary.main', borderRadius: 12}}  color='inherit' target="_blank" href="https://www.kaggle.com/gregorut/videogamesales">Link to Data Source</Button>
            <Button  style={{backgroundColor: bColor, color: '#FFFFFF', marginLeft : "12px" , paddingLeft : "12px", border: 4 , borderColor: 'primary.main',  borderRadius: 12 }} color='inherit' target="_blank" href="https://github.com/CPSC-4030-G4/final-visualization">Link to Source Code</Button>
-           <Box sx={{ minWidth: 275, marginLeft : "500px" }}>
+           <Box sx={{ minWidth: 275, marginLeft : "200px" }}>
           <Card variant="outlined">Showing Data for 
           <Typography sx={{ m : .5 }} color="black">
-          {props.filterPlat !== null ? props.filterPlat : "All Platforms"}
+          <strong>{props.filterPlat !== null ? props.filterPlat : "All Platforms"}</strong>
       </Typography>
           </Card>
         </Box>
@@ -79,7 +79,8 @@ import { DataGrid } from '@mui/x-data-grid';
    const [platforms, setPlatforms] = React.useState(nintendo)
    const [region, setRegion] = React.useState("Global_Sales")
    const [filteredData, setFilteredData] = React.useState([])
-  console.log(filteredData)
+   const [clicked, setClicked] = React.useState(false)
+   console.log(filteredData)
 
    const handlePublisherChange = (data) => {
      if(show === false) setShow(true)
@@ -156,7 +157,7 @@ import { DataGrid } from '@mui/x-data-grid';
        </div>
        <div className='top-container'>
          <div className='chart-style'>
-         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region} filterFunc={setFilterPlat} filterPlat={filterPlat} filterDataFunc={setFilteredData}></Barchart>
+         <Barchart dataset={data} platforms={platforms} publisher={publisher} region={region} filterFunc={setFilterPlat} filterPlat={filterPlat} filterDataFunc={setFilteredData} clickFunction={setClicked} clicked={clicked}></Barchart>
          </div>
          <div style ={{margin : "60px"}}>
            
